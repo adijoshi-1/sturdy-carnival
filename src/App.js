@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { Dropbox, Chatbox, Contactbox, Personal } from './pages'
 
-function App() {
+const router = createBrowserRouter([
+  {
+    path: '/personal',
+    element: <Personal />,
+  },
+  {
+    path: '/contactbox',
+    element: <Contactbox />,
+  },
+  {
+    path: '/dropbox',
+    element: <Dropbox />,
+  },
+  {
+    path: '/chatbox',
+    element: <Chatbox />,
+  },
+  {
+    path: '*',
+    element: <Dropbox />,
+  },
+])
+
+export const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      <RouterProvider router={router} />
+    </>
+  )
 }
 
-export default App;
