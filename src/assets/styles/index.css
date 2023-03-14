@@ -31,7 +31,7 @@ body {
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 20px;
-  color: #97dece;
+  color: white;
   text-transform: uppercase;
   letter-spacing: 2px;
   text-align: center;
@@ -145,6 +145,7 @@ body {
 
 .navbar a:hover {
   text-decoration: underline;
+  cursor: pointer;
 }
 
 .navbar-links {
@@ -184,7 +185,9 @@ body {
   margin: 10px;
   padding: 10px;
   display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
   max-width: 250px;
   overflow: hidden;
 }
@@ -192,24 +195,91 @@ body {
 .upload-item img {
   width: 50px;
   height: 50px;
-  margin-right: 10px;
 }
 
 .upload-item p {
-  margin: 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.upload-item .delete-btn {
+.upload-item button {
+  width: 100%;
+  margin: 5px;
+}
+
+button {
+  color: #62b6b7;
+  text-decoration: none;
+}
+
+button a {
+  color: #62b6b7;
+  text-decoration: none;
+}
+
+.upload-item button a:hover {
+  color: white;
+}
+
+.delete-btn {
+  background-color: #fff;
+  border: 1px solid red;
+  border-radius: 4px;
+  color: red;
+  cursor: pointer;
+  font-size: 12px;
+  padding: 5px 10px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+.download-btn {
   background-color: #fff;
   border: 1px solid #62b6b7;
   border-radius: 4px;
-  color: #62b6b7;
   cursor: pointer;
   font-size: 12px;
-  margin-left: auto;
   padding: 5px 10px;
   text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+.delete-btn:hover {
+  color: white;
+  background-color: red;
+}
+
+.download-btn:hover {
+  color: white;
+  background-color: #62b6b7;
+}
+
+.drop-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 200px;
+  border: 2px dashed #aaa;
+  border-radius: 5px;
+  background-color: #f8f8f8;
+  transition: background-color 0.3s ease;
+}
+
+.drop-zone.drag-over {
+  background-color: #eaf7ff;
+}
+
+.drop-message {
+  font-size: 20px;
+  font-weight: bold;
+  color: #aaa;
+  margin-bottom: 10px;
+}
+
+.default-message {
+  font-size: 16px;
+  color: #aaa;
 }

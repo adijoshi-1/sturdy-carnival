@@ -5,7 +5,7 @@ export const Personal = () => {
     <>
       <Sidebar />
       <Navbar />
-      <MainContent>Personal</MainContent>
+      <MainContent></MainContent>
     </>
   )
 }

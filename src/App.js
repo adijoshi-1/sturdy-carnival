@@ -1,5 +1,9 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { Dropbox, Chatbox, Contactbox, Personal } from './pages'
+import {
+  createBrowserRouter,
+  RouterProvider,
+  useNavigate,
+} from 'react-router-dom'
+import { Dropbox, Chatbox, Contactbox, Personal, NotFound } from './pages'
 
 const router = createBrowserRouter([
   {
@@ -20,7 +24,7 @@ const router = createBrowserRouter([
   },
   {
     path: '*',
-    element: <Dropbox />,
+    element: <NotFound />,
   },
 ])
 

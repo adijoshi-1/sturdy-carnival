@@ -1,29 +1,54 @@
 import { Link } from 'react-router-dom'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 
 export const Sidebar = () => {
   const [opened, setOpened] = useState(true)
+  const currentPath = useSelector((state) => state.currentPath)
+  const dispatch = useDispatch()
+  const updatePath = (path) => {
+    dispatch({
+      type: 'update_path',
+      payload: path,
+    })
+  }
   return (
     <div className="sidebar open">
       <div className="title">Tools</div>
       <ul>
         <li>
-          <Link to="/dropbox" className="sidebar-active">
+          <Link
+            to="/dropbox"
+            className={currentPath === '/dropbox' ? 'sidebar-active' : ''}
+            onClick={() => updatePath('/dropbox')}
+          >
             <i className="fa-brands fa-dropbox"></i>&nbsp;Dropbox
           </Link>
         </li>
         <li>
-          <Link to="/chatbox">
+          <Link
+            to="/chatbox"
+            className={currentPath === '/chatbox' ? 'sidebar-active' : ''}
+            onClick={() => updatePath('/chatbox')}
+          >
             <i className="fa-solid fa-comments"></i>&nbsp;Chatbox
           </Link>
         </li>
         <li>
-          <Link to="/contactbox">
+          <Link
+            to="/contactbox"
+            className={currentPath === '/contactbox' ? 'sidebar-active' : ''}
+            onClick={() => updatePath('/contactbox')}
+          >
             <i className="fa-solid fa-address-book"></i>&nbsp;Contactbox
           </Link>
         </li>
         <li>
-          <Link to="/personal">
+          <Link
+            to="/personal"
+            className={currentPath === '/personal' ? 'sidebar-active' : ''}
+            onClick={() => updatePath('/personal')}
+          >
             <i className="fa-solid fa-user"></i>&nbsp;Personal
           </Link>
         </li>
