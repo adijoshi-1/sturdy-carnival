@@ -45,11 +45,11 @@ export const Sidebar = () => {
         </li>
         <li>
           <Link
-            to="/personal"
-            className={currentPath === '/personal' ? 'sidebar-active' : ''}
-            onClick={() => updatePath('/personal')}
+            to="/profile"
+            className={currentPath === '/profile' ? 'sidebar-active' : ''}
+            onClick={() => updatePath('/profile')}
           >
-            <i className="fa-solid fa-user"></i>&nbsp;Personal
+            <i className="fa-solid fa-user"></i>&nbsp;Profile
           </Link>
         </li>
       </ul>

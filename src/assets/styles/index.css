@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -136,15 +142,14 @@ body {
   text-decoration: none;
   margin-right: 10px;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 .navbar-logo a {
-  font-size: 24px;
+  font-size: 20px;
 }
 
 .navbar a:hover {
-  text-decoration: underline;
   cursor: pointer;
 }
 

@@ -1,14 +1,12 @@
-import {
-  createBrowserRouter,
-  RouterProvider,
-  useNavigate,
-} from 'react-router-dom'
-import { Dropbox, Chatbox, Contactbox, Personal, NotFound } from './pages'
+import { useEffect } from 'react'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { Dropbox, Chatbox, Contactbox, Profile, NotFound, Login } from './pages'
 
 const router = createBrowserRouter([
   {
-    path: '/personal',
-    element: <Personal />,
+    path: '/profile',
+    element: <Profile />,
   },
   {
     path: '/contactbox',
@@ -23,12 +21,25 @@ const router = createBrowserRouter([
     element: <Chatbox />,
   },
   {
+    path: '/login',
+    element: <Login />,
+  },
+  {
     path: '*',
     element: <NotFound />,
   },
 ])
 
 export const App = () => {
+  const loggedIn = useSelector((state) => state.loggedIn)
+  useEffect(() => {
+    console.log(loggedIn)
+    if (!loggedIn && window.location.pathname !== '/login') {
+      window.location.href = '/login'
+    } else if (loggedIn && window.location.pathname === '/login') {
+      window.location.href = '/'
+    }
+  }, [])
   return (
     <>
       <RouterProvider router={router} />

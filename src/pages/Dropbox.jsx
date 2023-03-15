@@ -1,6 +1,8 @@
 import { useState, useRef, useEffect } from 'react'
+import { v4 } from 'uuid'
 import { Sidebar, Navbar, MainContent } from '../components'
 import structure from './structure.json'
+import { removeExtensionFromFile } from '../middleware'
 
 const base64 = structure
 
@@ -10,9 +12,26 @@ export const Dropbox = () => {
   const timer = useRef()
   const uploadRef = useRef()
 
-  const handleUpload = (e) => {
-    e.preventDefault()
-    console.log(e.target.files[0])
+  const handleUpload = (e, gotfile) => {
+    const file = gotfile || e.target.files[0]
+
+    const fr = new FileReader()
+    fr.onload = function () {
+      console.log(fr.result)
+      const instance = {
+        id: v4(),
+        type: 'image',
+        imageString: fr.result,
+        timeStamp: Date.now(),
+        title: file.name,
+        uploaded_by: localStorage.getItem('username'),
+        publicKey: 'random',
+      }
+
+      setData((array) => [...array, instance])
+    }
+
+    fr.readAsDataURL(file)
   }
 
   const onDoubleClick = () => {
@@ -59,7 +78,7 @@ export const Dropbox = () => {
             setDragOver(false)
             const file = e.dataTransfer.files[0]
             // Do something with the dropped files (e.g. upload them to a server)
-            console.log(file)
+            handleUpload(null, file)
           }}
         >
           {!dragOver ? (
@@ -72,17 +91,11 @@ export const Dropbox = () => {
                 {data.map((data) => {
                   return data.type === 'image' ? (
                     <div className="upload-item" key={data.id}>
-                      <img
-                        src={`data:image;base64,${data.imageString}`}
-                        alt="wolf"
-                      />
-                      <p>{data.title}</p>
+                      <img src={data.imageString} alt="wolf" />
+                      <p>{removeExtensionFromFile(data.title)}</p>
                       <button className="delete-btn">Delete</button>
                       <button className="download-btn">
-                        <a
-                          download="image.png"
-                          href={`data:image;base64,${data.imageString}`}
-                        >
+                        <a download={data.title} href={data.imageString}>
                           Download
                         </a>
                       </button>

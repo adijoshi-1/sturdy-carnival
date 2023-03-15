@@ -8,7 +8,6 @@
 .outer {
   height: 78vh;
   background-image: var(--body-bg);
-  font-family: Helvetica, sans-serif;
 }
 
 .msger {
@@ -50,8 +49,9 @@
   background: #ddd;
   background-repeat: no-repeat;
   background-position: center;
-  background-size: cover;
+  background-size: contain;
   border-radius: 50%;
+  object-fit: contain;
 }
 .msg-bubble {
   max-width: 450px;
